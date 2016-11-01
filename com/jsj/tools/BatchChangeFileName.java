@@ -1,3 +1,5 @@
+package jsj.tools;
+
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +23,7 @@ public class BatchChangeFileName {
 
     /**
      * 批量修改文件文件名，采用加密的方式
+     *
      * @param fileDir
      * @return
      * @throws IllegalArgumentException
@@ -42,15 +45,15 @@ public class BatchChangeFileName {
             for (File file : files) {
                 if (file.isFile()) {
                     String filename = file.getName();
-//                    String absolutePath = file.getAbsolutePath();
+                    //                    String absolutePath = file.getAbsolutePath();
                     String nameprefix = filename.split("\\.")[0];
-//                    String newPrefix = new BASE64Encoder().encodeBuffer(nameprefix.getBytes()).split("\\r")[0];
-//                    String newPath = file.getPath().replaceAll(nameprefix, newPrefix);
-                    byte [] bytes = md5.digest(nameprefix.getBytes());
+                    //                    String newPrefix = new BASE64Encoder().encodeBuffer(nameprefix.getBytes()).split("\\r")[0];
+                    //                    String newPath = file.getPath().replaceAll(nameprefix, newPrefix);
+                    byte[] bytes = md5.digest(nameprefix.getBytes());
                     StringBuffer sb = new StringBuffer();
-                    for(byte b : bytes){
-                        int bt = b&0xff;
-                        if(bt < 16){
+                    for (byte b : bytes) {
+                        int bt = b & 0xff;
+                        if (bt < 16) {
                             sb.append(0);
                         }
                         sb.append(Integer.toHexString(bt));
@@ -66,7 +69,7 @@ public class BatchChangeFileName {
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            return("加密方式错误");
+            return ("加密方式错误");
         }
     }
 }

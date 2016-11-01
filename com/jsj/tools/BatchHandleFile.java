@@ -1,4 +1,4 @@
-import org.apache.commons.io.FileUtils;
+package jsj.tools;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
+
+import org.apache.commons.io.FileUtils;
 
 /**
  * Created by JINSHENGJIE on 2016/2/15.
@@ -47,7 +49,7 @@ public class BatchHandleFile {
                 messageDigest.update(fileNamePrefix.getBytes());
                 sha = new BigInteger(messageDigest.digest());
                 String newNamePrefix = sha.toString(32);
-                String newPath = file.getCanonicalPath().replaceAll(fileNamePrefix,newNamePrefix);
+                String newPath = file.getCanonicalPath().replaceAll(fileNamePrefix, newNamePrefix);
                 file.renameTo(new File(newPath));
 
             }
@@ -72,6 +74,5 @@ public class BatchHandleFile {
             FileUtils.writeLines(new File(newFilePath), destCodeFormat, FileUtils.readLines(file, sourceCodeFormat));
         }
     }
-
 
 }
