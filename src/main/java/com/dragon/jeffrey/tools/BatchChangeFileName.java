@@ -1,4 +1,4 @@
-package jsj.tools;
+package com.dragon.jeffrey.tools;
 
 import java.io.File;
 import java.security.MessageDigest;
